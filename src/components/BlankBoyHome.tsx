@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import BlankAITerminal from "@/components/BlankAITerminal";
 import banner from "@/assets/banner.jpeg";
 import bbGreen from "@/assets/bb-green.jpeg";
 import bbPurple from "@/assets/bb-purple.jpeg";
@@ -99,6 +100,7 @@ function Nav() {
         </a>
         <nav className="hidden gap-7 text-xs uppercase tracking-[0.2em] text-white/70 md:flex">
           <a href="#about" className="hover:text-neon-green">About</a>
+          <a href="#blank-ai" className="hover:text-neon-green">Blank AI</a>
           <a href="#gallery" className="hover:text-neon-green">Gallery</a>
           <a href="#tokenomics" className="hover:text-neon-green">Tokenomics</a>
           <a href="#roadmap" className="hover:text-neon-green">Roadmap</a>
@@ -571,6 +573,7 @@ export default function BlankBoyHome() {
       <Nav />
       <Hero />
       <About />
+      <BlankAITerminal />
       <Gallery />
       <Tokenomics />
       <Roadmap />
