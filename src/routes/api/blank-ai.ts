@@ -1,7 +1,7 @@
 import "@tanstack/react-start";
 import { createFileRoute } from "@tanstack/react-router";
 import { streamText } from "ai";
-import { createGoogleGeminiProvider, getModelWithFallback, MODELS } from "@/lib/ai-gateway";
+import { createOpenRouterProvider, getModelWithFallback, MODELS } from "@/lib/ai-gateway";
 
 type Mode = "meme" | "reply" | "token" | "lore" | "shitpost";
 type Persona = "green" | "purple" | "blue" | "orange" | "white";
@@ -38,24 +38,33 @@ const BASE = [
   "Lowercase preferred. No emojis. No hashtags unless asked. Output only what was requested.",
 ].join(" ");
 
+const createErrorResponse = (
+  error: string,
+  message: string,
+  status: number = 500
+) => {
+  return new Response(
+    JSON.stringify({ error, message }),
+    {
+      status,
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+};
+
 export const Route = createFileRoute("/api/blank-ai")({
   server: {
     handlers: {
       POST: async ({ request }: { request: Request }) => {
         try {
-          const key = process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.GOOGLE_API_KEY;
+          const apiKey = process.env.OPENROUTER_API_KEY;
 
-          if (!key || key.trim() === "") {
-            console.error("AI Error: Missing Google API key");
-            return new Response(
-              JSON.stringify({
-                error: "Configuration error",
-                message: "Google Gemini API key is missing. Please set GOOGLE_GENERATIVE_AI_API_KEY in your environment variables.",
-              }),
-              {
-                status: 500,
-                headers: { "Content-Type": "application/json" },
-              }
+          if (!apiKey || apiKey.trim() === "") {
+            console.error("AI Error: Missing OpenRouter API key");
+            return createErrorResponse(
+              "Configuration error",
+              "OpenRouter API key is missing. Please set OPENROUTER_API_KEY in your environment variables.",
+              500
             );
           }
 
@@ -63,15 +72,10 @@ export const Route = createFileRoute("/api/blank-ai")({
           try {
             body = await request.json();
           } catch {
-            return new Response(
-              JSON.stringify({
-                error: "Invalid request",
-                message: "Invalid JSON payload",
-              }),
-              {
-                status: 400,
-                headers: { "Content-Type": "application/json" },
-              }
+            return createErrorResponse(
+              "Invalid request",
+              "Invalid JSON payload",
+              400
             );
           }
 
@@ -80,33 +84,23 @@ export const Route = createFileRoute("/api/blank-ai")({
           const input = (body.input ?? "").toString().slice(0, 600).trim();
 
           if (!input) {
-            return new Response(
-              JSON.stringify({
-                error: "Missing input",
-                message: "Please provide input text",
-              }),
-              {
-                status: 400,
-                headers: { "Content-Type": "application/json" },
-              }
+            return createErrorResponse(
+              "Missing input",
+              "Please provide input text",
+              400
             );
           }
 
           if (!MODES[mode] || !PERSONAS[persona]) {
-            return new Response(
-              JSON.stringify({
-                error: "Invalid parameters",
-                message: "Invalid mode or persona",
-              }),
-              {
-                status: 400,
-                headers: { "Content-Type": "application/json" },
-              }
+            return createErrorResponse(
+              "Invalid parameters",
+              "Invalid mode or persona",
+              400
             );
           }
 
-          const google = createGoogleGeminiProvider(key);
-          const model = getModelWithFallback(google, {
+          const openrouter = createOpenRouterProvider(apiKey);
+          const model = getModelWithFallback(openrouter, {
             primaryModel: MODELS.PRIMARY,
             fallbackModel: MODELS.FALLBACK,
           });
@@ -125,41 +119,34 @@ export const Route = createFileRoute("/api/blank-ai")({
           
           const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
           
-          if (errorMessage.includes("API key not valid") || errorMessage.includes("API key invalid")) {
-            return new Response(
-              JSON.stringify({
-                error: "Invalid API key",
-                message: "The provided Google Gemini API key is invalid. Please check your API key and try again.",
-              }),
-              {
-                status: 401,
-                headers: { "Content-Type": "application/json" },
-              }
+          if (errorMessage.includes("API key") || errorMessage.includes("authentication")) {
+            return createErrorResponse(
+              "Invalid API key",
+              "The provided OpenRouter API key is invalid. Please check your API key and try again.",
+              401
             );
           }
 
-          if (errorMessage.includes("rate limit") || errorMessage.includes("quota exceeded")) {
-            return new Response(
-              JSON.stringify({
-                error: "Rate limited",
-                message: "Rate limit exceeded. Please try again later.",
-              }),
-              {
-                status: 429,
-                headers: { "Content-Type": "application/json" },
-              }
+          if (errorMessage.includes("rate limit") || errorMessage.includes("quota") || errorMessage.includes("429")) {
+            return createErrorResponse(
+              "Rate limited",
+              "Rate limit exceeded. Please try again later.",
+              429
             );
           }
 
-          return new Response(
-            JSON.stringify({
-              error: "Server error",
-              message: "An unexpected error occurred. Please try again later.",
-            }),
-            {
-              status: 500,
-              headers: { "Content-Type": "application/json" },
-            }
+          if (errorMessage.includes("timeout") || errorMessage.includes("timed out")) {
+            return createErrorResponse(
+              "Timeout",
+              "Request timed out. Please try again later.",
+              504
+            );
+          }
+
+          return createErrorResponse(
+            "Server error",
+            "An unexpected error occurred. Please try again later.",
+            500
           );
         }
       },

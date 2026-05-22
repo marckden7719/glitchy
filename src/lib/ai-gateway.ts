@@ -1,24 +1,25 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createOpenAI } from "@ai-sdk/openai";
 
 export const MODELS = {
-  PRIMARY: "gemini-2.0-flash",
-  FALLBACK: "gemini-1.5-flash",
+  PRIMARY: "deepseek/deepseek-chat-v3-0324:free",
+  FALLBACK: "meta-llama/llama-3.3-70b-instruct:free",
 } as const;
 
 export type ModelKey = keyof typeof MODELS;
 
-export const createGoogleGeminiProvider = (apiKey: string) => {
+export const createOpenRouterProvider = (apiKey: string) => {
   if (!apiKey || apiKey.trim() === "") {
-    throw new Error("Google Gemini API key is required");
+    throw new Error("OpenRouter API key is required");
   }
 
-  return createGoogleGenerativeAI({
+  return createOpenAI({
     apiKey: apiKey.trim(),
+    baseURL: "https://openrouter.ai/api/v1",
   });
 };
 
 export const getModelWithFallback = (
-  provider: ReturnType<typeof createGoogleGeminiProvider>,
+  provider: ReturnType<typeof createOpenRouterProvider>,
   options: {
     primaryModel?: string;
     fallbackModel?: string;
