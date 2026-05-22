@@ -17,31 +17,43 @@ const characters = [
 ];
 
 function Pixels({ count = 30, color = "#C6FF00" }: { count?: number; color?: string }) {
+  const [isClient, setIsClient] = useState(false);
+  const [pixels, setPixels] = useState<Array<{ size: number; left: number; top: number; delay: number; dur: number }>>([]);
+
+  useEffect(() => {
+    setIsClient(true);
+    const newPixels = Array.from({ length: count }).map(() => ({
+      size: 4 + Math.random() * 8,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 6,
+      dur: 4 + Math.random() * 6,
+    }));
+    setPixels(newPixels);
+  }, [count]);
+
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {Array.from({ length: count }).map((_, i) => {
-        const size = 4 + Math.random() * 8;
-        const left = Math.random() * 100;
-        const top = Math.random() * 100;
-        const delay = Math.random() * 6;
-        const dur = 4 + Math.random() * 6;
-        return (
-          <span
-            key={i}
-            style={{
-              position: "absolute",
-              width: size,
-              height: size,
-              left: `${left}%`,
-              top: `${top}%`,
-              background: color,
-              opacity: 0.5,
-              animation: `pixel-drift ${dur}s ease-in ${delay}s infinite`,
-              boxShadow: `0 0 8px ${color}`,
-            }}
-          />
-        );
-      })}
+      {pixels.map((p, i) => (
+        <span
+          key={i}
+          style={{
+            position: "absolute",
+            width: p.size,
+            height: p.size,
+            left: `${p.left}%`,
+            top: `${p.top}%`,
+            background: color,
+            opacity: 0.5,
+            animation: `pixel-drift ${p.dur}s ease-in ${p.delay}s infinite`,
+            boxShadow: `0 0 8px ${color}`,
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -340,8 +352,17 @@ function Tokenomics() {
     { k: "Liquidity", v: "BURNED", c: "#FF9D00" },
     { k: "Contract", v: "RENOUNCED", c: "#8B3DFF" },
     { k: "Network", v: "SOLANA", c: "#00A3FF" },
-    { k: "Ticker", v: "$BLANK", c: "#C6FF00" },
+    { k: "Ticker", v: "$BLANKBOY", c: "#C6FF00" },
   ];
+  
+  const [isClient, setIsClient] = useState(false);
+  const [widths, setWidths] = useState<number[]>([]);
+
+  useEffect(() => {
+    setIsClient(true);
+    setWidths(stats.map(() => 60 + Math.random() * 35));
+  }, []);
+
   return (
     <Section id="tokenomics">
       <div className="absolute inset-0 -z-10 grid-bg opacity-30" />
@@ -372,14 +393,16 @@ function Tokenomics() {
               {s.v}
             </p>
             <div className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-white/5">
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: `${60 + Math.random() * 35}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: i * 0.06 }}
-                className="h-full"
-                style={{ background: s.c, boxShadow: `0 0 12px ${s.c}` }}
-              />
+              {isClient && widths[i] !== undefined && (
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${widths[i]}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: i * 0.06 }}
+                  className="h-full"
+                  style={{ background: s.c, boxShadow: `0 0 12px ${s.c}` }}
+                />
+              )}
             </div>
           </motion.div>
         ))}

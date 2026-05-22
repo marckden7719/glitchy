@@ -78,11 +78,22 @@ export default function BlankAITerminal() {
         body: JSON.stringify({ mode, persona, input: text }),
         signal: ctl.signal,
       });
+      
       if (!res.ok) {
-        if (res.status === 429) throw new Error("rate limited. the void requires patience.");
-        if (res.status === 402) throw new Error("credits exhausted. refuel the gateway.");
-        throw new Error(`gateway error: ${res.status}`);
+        let errorMessage = `gateway error: ${res.status}`;
+        try {
+          const errorData = await res.json();
+          if (errorData.message) {
+            errorMessage = errorData.message;
+          } else if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+        } catch {
+          // Fallback to status code if JSON parsing fails
+        }
+        throw new Error(errorMessage);
       }
+      
       const reader = res.body?.getReader();
       if (!reader) throw new Error("no stream");
       const decoder = new TextDecoder();
@@ -373,27 +384,43 @@ export default function BlankAITerminal() {
 }
 
 function Pixels({ color }: { color: string }) {
+  const [isClient, setIsClient] = useState(false);
+  const [pixels, setPixels] = useState<Array<{ size: number; left: number; top: number; delay: number; dur: number }>>([]);
+
+  useEffect(() => {
+    setIsClient(true);
+    const newPixels = Array.from({ length: 18 }).map(() => ({
+      size: 3 + Math.random() * 6,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 6,
+      dur: 4 + Math.random() * 6,
+    }));
+    setPixels(newPixels);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {Array.from({ length: 18 }).map((_, i) => {
-        const size = 3 + Math.random() * 6;
-        return (
-          <span
-            key={i}
-            style={{
-              position: "absolute",
-              width: size,
-              height: size,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              background: color,
-              opacity: 0.35,
-              animation: `pixel-drift ${4 + Math.random() * 6}s ease-in ${Math.random() * 6}s infinite`,
-              boxShadow: `0 0 8px ${color}`,
-            }}
-          />
-        );
-      })}
+      {pixels.map((p, i) => (
+        <span
+          key={i}
+          style={{
+            position: "absolute",
+            width: p.size,
+            height: p.size,
+            left: `${p.left}%`,
+            top: `${p.top}%`,
+            background: color,
+            opacity: 0.35,
+            animation: `pixel-drift ${p.dur}s ease-in ${p.delay}s infinite`,
+            boxShadow: `0 0 8px ${color}`,
+          }}
+        />
+      ))}
     </div>
   );
 }
