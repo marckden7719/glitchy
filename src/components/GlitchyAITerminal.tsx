@@ -24,10 +24,10 @@ const PERSONAS: {
 ];
 
 const MODES: { key: Mode; label: string; placeholder: string; example: string }[] = [
-  { key: "meme", label: "MEME GEN", placeholder: "solana meme about fomo…", example: "degens watching the chart at 4am" },
+  { key: "meme", label: "MEME GEN", placeholder: "monad meme about fomo…", example: "degens watching the chart at 4am" },
   { key: "reply", label: "CT REPLY", placeholder: "paste a tweet or topic…", example: "someone shilling a new L2" },
   { key: "token", label: "TOKEN GEN", placeholder: "narrative or vibe…", example: "abandoned wallet dust cult" },
-  { key: "lore", label: "LORE", placeholder: "lore subject…", example: "the origin of blank boy" },
+  { key: "lore", label: "LORE", placeholder: "lore subject…", example: "the origin of glitchy" },
   { key: "shitpost", label: "SHITPOST", placeholder: "topic…", example: "utility tokens" },
 ];
 
@@ -44,7 +44,7 @@ function Status({ label, value, color }: { label: string; value: string; color: 
   );
 }
 
-export default function BlankAITerminal() {
+export default function GlitchyAITerminal() {
   const [persona, setPersona] = useState<Persona>("green");
   const [mode, setMode] = useState<Mode>("meme");
   const [input, setInput] = useState("");
@@ -75,14 +75,14 @@ export default function BlankAITerminal() {
   }
 
   return (
-    <section id="blank-ai" className="relative mx-auto w-full max-w-6xl px-6 py-28">
+    <section id="glitchy-ai" className="relative mx-auto w-full max-w-6xl px-6 py-28">
       <Pixels color={activePersona.color} />
 
       {/* Header */}
       <div className="relative z-10 mb-10 text-center">
         <div className="mb-3 inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-white/60">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--neon-green)] animate-flicker" />
-          Blank Boy AI // v0.void
+          GLITCHY AI // v0.void
           <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-orange-500/20 px-2 py-0.5 text-[9px] font-bold text-orange-400 border border-orange-500/30">
             BETA
           </span>
@@ -91,7 +91,7 @@ export default function BlankAITerminal() {
           TALK TO THE <span className="text-neon-green">VOID</span>.
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-sm text-white/60 md:text-base">
-          blank boy ai assistant transforms nothing into culture. memes, lore, tickers, shitposts —
+          glitchy ai assistant transforms nothing into culture. memes, lore, tickers, shitposts —
           summoned from the abyss in real time.
         </p>
       </div>
@@ -110,7 +110,7 @@ export default function BlankAITerminal() {
             <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
             <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
             <span className="ml-3 font-mono text-[11px] uppercase tracking-[0.25em] text-white/50">
-              blank_ai // {activePersona.label.toLowerCase()}@void:~$
+              glitchy_ai // {activePersona.label.toLowerCase()}@void:~$
             </span>
           </div>
           <div className="flex flex-wrap items-center gap-4">
@@ -213,7 +213,7 @@ export default function BlankAITerminal() {
                     className="text-white/40"
                   >
                     <div className="mb-2 text-white/60">
-                      &gt; blank_ai initialized. persona: <span style={{ color: activePersona.color }}>{activePersona.label}</span>. mode: {activeMode.label}.
+                      &gt; glitchy_ai initialized. persona: <span style={{ color: activePersona.color }}>{activePersona.label}</span>. mode: {activeMode.label}.
                     </div>
                     <div className="mb-1">&gt; awaiting input from the void_</div>
                     <button

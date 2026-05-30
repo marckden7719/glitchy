@@ -10,43 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApiBlankAiRouteImport } from './routes/api/blank-ai'
+import { Route as ApiGlitchyAiRouteImport } from './routes/api/glitchy-ai'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiBlankAiRoute = ApiBlankAiRouteImport.update({
-  id: '/api/blank-ai',
-  path: '/api/blank-ai',
+const ApiGlitchyAiRoute = ApiGlitchyAiRouteImport.update({
+  id: '/api/glitchy-ai',
+  path: '/api/glitchy-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/api/blank-ai': typeof ApiBlankAiRoute
+  '/api/glitchy-ai': typeof ApiGlitchyAiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/api/blank-ai': typeof ApiBlankAiRoute
+  '/api/glitchy-ai': typeof ApiGlitchyAiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/api/blank-ai': typeof ApiBlankAiRoute
+  '/api/glitchy-ai': typeof ApiGlitchyAiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/blank-ai'
+  fullPaths: '/' | '/api/glitchy-ai'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/blank-ai'
-  id: '__root__' | '/' | '/api/blank-ai'
+  to: '/' | '/api/glitchy-ai'
+  id: '__root__' | '/' | '/api/glitchy-ai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ApiBlankAiRoute: typeof ApiBlankAiRoute
+  ApiGlitchyAiRoute: typeof ApiGlitchyAiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,11 +58,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/blank-ai': {
-      id: '/api/blank-ai'
-      path: '/api/blank-ai'
-      fullPath: '/api/blank-ai'
-      preLoaderRoute: typeof ApiBlankAiRouteImport
+    '/api/glitchy-ai': {
+      id: '/api/glitchy-ai'
+      path: '/api/glitchy-ai'
+      fullPath: '/api/glitchy-ai'
+      preLoaderRoute: typeof ApiGlitchyAiRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -70,7 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ApiBlankAiRoute: ApiBlankAiRoute,
+  ApiGlitchyAiRoute: ApiGlitchyAiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import BlankAITerminal from "@/components/BlankAITerminal";
+import GlitchyAITerminal from "@/components/GlitchyAITerminal";
 import banner from "@/assets/banner.jpeg";
 import bbGreen from "@/assets/bb-green.png";
 import bbPurple from "@/assets/bb-purple.png";
@@ -69,7 +69,7 @@ function Loader({ done }: { done: boolean }) {
     >
       <motion.img
         src={bbBlue}
-        alt="BlankBoy"
+        alt="GLITCHY"
         className="h-40 w-40 object-contain animate-flicker"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -107,12 +107,12 @@ function Nav() {
     <header className="fixed top-0 left-0 right-0 z-40">
       <div className="mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-full glass px-4 py-2.5 md:px-6">
         <a href="#top" className="flex items-center gap-2.5">
-          <img src={bbBlue} alt="BLANK BOY" className="h-9 w-9 rounded-full object-cover" />
-          <span className="font-display text-sm tracking-widest text-white">BLANK BOY</span>
+          <img src={bbBlue} alt="GLITCHY" className="h-9 w-9 rounded-full object-cover" />
+          <span className="font-display text-sm tracking-widest text-white">GLITCHY</span>
         </a>
         <nav className="hidden gap-7 text-xs uppercase tracking-[0.2em] text-white/70 md:flex">
           <a href="#about" className="hover:text-neon-green">About</a>
-          <a href="#blank-ai" className="hover:text-neon-green">Blank AI</a>
+          <a href="#glitchy-ai" className="hover:text-neon-green">GLITCHY AI</a>
           <a href="#gallery" className="hover:text-neon-green">Gallery</a>
           <a href="#tokenomics" className="hover:text-neon-green">Tokenomics</a>
           <a href="#roadmap" className="hover:text-neon-green">Roadmap</a>
@@ -122,7 +122,7 @@ function Nav() {
           href="#community"
           className="rounded-full bg-[var(--neon-green)] px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-black hover:opacity-90"
         >
-          Buy $BLANKBOY
+          Buy $GLITCHY
         </a>
       </div>
     </header>
@@ -157,7 +157,7 @@ function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
           src={banner}
-          alt="BLANK BOY"
+          alt="GLITCHY"
           className="w-full max-w-3xl mix-blend-screen"
           style={{ filter: "drop-shadow(0 0 40px rgba(198,255,0,0.35))" }}
         />
@@ -178,7 +178,7 @@ function Hero() {
           transition={{ delay: 0.9, duration: 0.8 }}
           className="mt-6 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base"
         >
-          BlankBoy, the enigmatic icon from Blank.Build, emerges from the digital void —
+          GLITCHY, the enigmatic icon, emerges from the digital void —
           inviting creators, degens, and dreamers to write their own story.
         </motion.p>
 
@@ -192,7 +192,7 @@ function Hero() {
             href="#community"
             className="group relative overflow-hidden rounded-full bg-[var(--neon-green)] px-8 py-4 font-display text-sm tracking-widest text-black glow-green transition hover:scale-105"
           >
-            BUY $BLANKBOY
+            BUY $GLITCHY
           </a>
           <a
             href="https://t.me/BlankBoyOnSol"
@@ -244,14 +244,14 @@ function Section({ id, children, className = "" }: any) {
 
 function About() {
   const lines = [
-    "BlankBoy stands alone in the endless void.",
+    "GLITCHY stands alone in the endless void.",
     "Expressionless. Mysterious. Minimal.",
     "A blank canvas for internet culture itself.",
     "Nobody knows where he came from.",
     "Nobody knows what he's thinking.",
     "And maybe that's the point.",
     "In a world overloaded with noise,",
-    "BlankBoy proves that less is more.",
+    "GLITCHY proves that less is more.",
   ];
   return (
     <Section id="about">
@@ -265,7 +265,7 @@ function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             src={bbWhite}
-            alt="BlankBoy white hoodie"
+            alt="GLITCHY white hoodie"
             className="mx-auto h-[460px] animate-float object-contain"
             style={{ filter: "drop-shadow(0 0 40px rgba(255,255,255,0.3))" }}
           />
@@ -273,7 +273,7 @@ function About() {
         <div>
           <p className="font-display text-xs tracking-[0.5em] text-neon-green">// 01 · ORIGIN</p>
           <h2 className="font-display mt-3 text-5xl leading-none text-white md:text-6xl">
-            WHO IS <span className="text-neon-green text-glow-green">BLANKBOY</span>?
+            WHO IS <span className="text-neon-green text-glow-green">GLITCHY</span>?
           </h2>
           <div className="mt-8 space-y-3">
             {lines.map((l, i) => (
@@ -302,7 +302,7 @@ function Gallery() {
         <p className="font-display text-xs tracking-[0.5em] text-neon-purple">// 02 · FORMS</p>
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">CHARACTER VAULT</h2>
         <p className="mx-auto mt-4 max-w-xl text-white/60">
-          Five forms. One void. Choose your BlankBoy.
+          Five forms. One void. Choose your GLITCHY.
         </p>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -351,8 +351,8 @@ function Tokenomics() {
     { k: "Tax", v: "0 / 0", c: "#00A3FF" },
     { k: "Liquidity", v: "BURNED", c: "#FF9D00" },
     { k: "Contract", v: "RENOUNCED", c: "#8B3DFF" },
-    { k: "Network", v: "SOLANA", c: "#00A3FF" },
-    { k: "Ticker", v: "$BLANKBOY", c: "#C6FF00" },
+    { k: "Network", v: "MONAD", c: "#00A3FF" },
+    { k: "Ticker", v: "$GLITCHY", c: "#C6FF00" },
   ];
   
   const [isClient, setIsClient] = useState(false);
@@ -414,8 +414,8 @@ function Tokenomics() {
 function Roadmap() {
   const phases = [
     { p: "PHASE 1", color: "#C6FF00", items: ["Enter The Void", "Community Formation", "Meme Expansion"] },
-    { p: "PHASE 2", color: "#00A3FF", items: ["Viral Marketing", "Solana Trending", "Influencer Push"] },
-    { p: "PHASE 3", color: "#8B3DFF", items: ["Ecosystem Growth", "BlankBoy Universe", "Community Events"] },
+    { p: "PHASE 2", color: "#00A3FF", items: ["Viral Marketing", "Monad Trending", "Influencer Push"] },
+    { p: "PHASE 3", color: "#8B3DFF", items: ["Ecosystem Growth", "GLITCHY Universe", "Community Events"] },
     { p: "PHASE 4", color: "#FF9D00", items: ["Become The Meme", "Internet Domination"] },
   ];
   return (
@@ -477,7 +477,7 @@ function Community() {
     { label: "X / TWITTER", href: "https://x.com/Blankboyonsol", c: "#FFFFFF" },
     { label: "TELEGRAM", href: "https://t.me/BlankBoyOnSol", c: "#00A3FF" },
     { label: "DEXSCREENER", href: "#", c: "#C6FF00" },
-    { label: "Blank.Build", href: "#", c: "#8B3DFF" },
+    { label: "nad.fun", href: "#", c: "#8B3DFF" },
   ];
   return (
     <Section id="community">
@@ -492,7 +492,7 @@ function Community() {
               ENTER THE <span className="text-neon-green text-glow-green">VOID.</span>
             </h2>
             <p className="mt-5 max-w-md text-white/65">
-              The blank canvas is waiting. Become part of the BlankBoy collective.
+              The blank canvas is waiting. Become part of the GLITCHY collective.
             </p>
             <div className="mt-8 grid grid-cols-2 gap-3">
               {socials.map((s) => (
@@ -565,10 +565,10 @@ function Footer() {
     <footer className="relative border-t border-white/10 py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
         <div className="flex items-center gap-3">
-          <img src={bbBlue} alt="BLANK BOY" className="h-10 w-10 rounded-full object-cover" />
+          <img src={bbBlue} alt="GLITCHY" className="h-10 w-10 rounded-full object-cover" />
           <div>
-            <p className="font-display text-sm tracking-widest text-white">BLANK BOY</p>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Built on Solana</p>
+            <p className="font-display text-sm tracking-widest text-white">GLITCHY</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Built on Monad</p>
           </div>
         </div>
         <div className="flex gap-5 text-xs uppercase tracking-[0.25em] text-white/60">
@@ -576,14 +576,14 @@ function Footer() {
           <a href="https://t.me/BlankBoyOnSol" target="_blank" rel="noreferrer" className="hover:text-neon-green">Telegram</a>
         </div>
         <p className="text-[10px] uppercase tracking-[0.3em] text-white/30">
-          © {new Date().getFullYear()} BlankBoy · The Void
+          © {new Date().getFullYear()} GLITCHY · The Void
         </p>
       </div>
     </footer>
   );
 }
 
-export default function BlankBoyHome() {
+export default function GlitchyHome() {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 1400);
@@ -596,7 +596,7 @@ export default function BlankBoyHome() {
       <Nav />
       <Hero />
       <About />
-      <BlankAITerminal />
+      <GlitchyAITerminal />
       <Gallery />
       <Tokenomics />
       <Roadmap />

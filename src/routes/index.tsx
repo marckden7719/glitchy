@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import BlankBoyHome from "@/components/BlankBoyHome";
+import GlitchyHome from "@/components/GlitchyHome";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
 function Index() {
-  return <BlankBoyHome />;
+  return <GlitchyHome />;
 }

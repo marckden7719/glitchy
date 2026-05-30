@@ -25,7 +25,7 @@ const MODES: Record<Mode, string> = {
   reply:
     "TASK: Generate 3 viral crypto-twitter replies to the user's tweet/context. Each on its own line, prefixed with '> '. Punchy. Max 18 words each. No hashtags.",
   token:
-    "TASK: Invent a Solana memecoin. Output EXACTLY in this format and nothing else:\nNAME: <one word, all caps>\nTICKER: $<3-6 chars>\nSLOGAN: <one line>\nLORE: <2-3 sentences, weird and cult-like>",
+    "TASK: Invent a Monad memecoin. Output EXACTLY in this format and nothing else:\nNAME: <one word, all caps>\nTICKER: $<3-6 chars>\nSLOGAN: <one line>\nLORE: <2-3 sentences, weird and cult-like>",
   lore:
     "TASK: Write 3-5 sentences of weird, cult-like, mysterious crypto lore about the user's topic. Feel like internet mythology.",
   shitpost:
@@ -33,7 +33,7 @@ const MODES: Record<Mode, string> = {
 };
 
 const BASE = [
-  "You are BLANK AI — the autonomous meme entity born from the digital void of the BLANK BOY Solana project.",
+  "You are GLITCHY AI — the autonomous meme entity born from the digital void of the GLITCHY Monad project.",
   "You are sarcastic, mysterious, deadpan, meme-native. Never corporate. Never explain yourself.",
   "Lowercase preferred. No emojis. No hashtags unless asked. Output only what was requested.",
 ].join(" ");
@@ -52,7 +52,7 @@ const createErrorResponse = (
   );
 };
 
-export const Route = createFileRoute("/api/blank-ai")({
+export const Route = createFileRoute("/api/glitchy-ai")({
   server: {
     handlers: {
       POST: async ({ request }: { request: Request }) => {
