@@ -8,7 +8,7 @@ import bbOrange from "@/assets/bb-orange.png";
 import bbBlue from "@/assets/bb-blue.png";
 import bbWhite from "@/assets/bb-white.png";
 import glitchy from "@/assets/glitchy.png";
-import loadingVideo from "@/assets/loading screen.mp4";
+import loadingVideo from "@/assets/loading.mp4";
 
 const characters = [
   { src: bbGreen, name: "VOID MODE", color: "#C6FF00", glow: "glow-green" },
