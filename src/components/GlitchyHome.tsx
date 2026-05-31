@@ -5,15 +5,15 @@ import banner from "@/assets/banner.jpeg";
 import bbGreen from "@/assets/bb-green.png";
 import bbPurple from "@/assets/bb-purple.png";
 import bbOrange from "@/assets/bb-orange.png";
-import bbBlue from "@/assets/bb-blue.png";
 import bbWhite from "@/assets/bb-white.png";
+import glitchy from "@/assets/glitchy.png";
 
 const characters = [
-  { src: bbGreen, name: "VOID MODE", color: "#C6FF00", glow: "glow-green" },
-  { src: bbPurple, name: "GENESIS", color: "#8B3DFF", glow: "glow-purple" },
-  { src: bbBlue, name: "SOL SHIFT", color: "#00A3FF", glow: "glow-blue" },
-  { src: bbOrange, name: "HYPE CORE", color: "#FF9D00", glow: "glow-orange" },
-  { src: bbWhite, name: "NULL FORM", color: "#FFFFFF", glow: "" },
+  { src: glitchy, name: "VOID MODE", color: "#C6FF00", glow: "glow-green" },
+  { src: glitchy, name: "GENESIS", color: "#8B3DFF", glow: "glow-purple" },
+  { src: glitchy, name: "MONAD SHIFT", color: "#00A3FF", glow: "glow-blue" },
+  { src: glitchy, name: "HYPE CORE", color: "#FF9D00", glow: "glow-orange" },
+  { src: glitchy, name: "NULL FORM", color: "#FFFFFF", glow: "" },
 ];
 
 function Pixels({ count = 30, color = "#C6FF00" }: { count?: number; color?: string }) {
@@ -68,7 +68,7 @@ function Loader({ done }: { done: boolean }) {
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void"
     >
       <motion.img
-        src={bbBlue}
+        src={glitchy}
         alt="GLITCHY"
         className="h-40 w-40 object-contain animate-flicker"
         initial={{ scale: 0.8, opacity: 0 }}
@@ -107,7 +107,7 @@ function Nav() {
     <header className="fixed top-0 left-0 right-0 z-40">
       <div className="mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-full glass px-4 py-2.5 md:px-6">
         <a href="#top" className="flex items-center gap-2.5">
-          <img src={bbBlue} alt="GLITCHY" className="h-9 w-9 rounded-full object-cover" />
+          <img src={glitchy} alt="GLITCHY" className="h-9 w-9 rounded-full object-cover" />
           <span className="font-display text-sm tracking-widest text-white">GLITCHY</span>
         </a>
         <nav className="hidden gap-7 text-xs uppercase tracking-[0.2em] text-white/70 md:flex">
@@ -217,14 +217,14 @@ function Hero() {
 
       {/* floating mascot */}
       <motion.img
-        src={bbBlue}
+        src={glitchy}
         alt=""
         aria-hidden
         className="pointer-events-none absolute -left-12 bottom-10 hidden h-48 animate-float md:block"
         style={{ filter: "drop-shadow(0 0 30px rgba(0,163,255,0.5))" }}
       />
       <motion.img
-        src={bbPurple}
+        src={glitchy}
         alt=""
         aria-hidden
         className="pointer-events-none absolute -right-12 bottom-20 hidden h-48 animate-float md:block"
@@ -264,8 +264,8 @@ function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            src={bbWhite}
-            alt="GLITCHY white hoodie"
+            src={glitchy}
+            alt="GLITCHY"
             className="mx-auto h-[460px] animate-float object-contain"
             style={{ filter: "drop-shadow(0 0 40px rgba(255,255,255,0.3))" }}
           />
@@ -515,7 +515,7 @@ function Community() {
           </div>
           <div className="relative">
             <img
-              src={bbGreen}
+              src={glitchy}
               alt=""
               className="mx-auto h-80 animate-float object-contain"
               style={{ filter: "drop-shadow(0 0 40px rgba(198,255,0,0.5))" }}
@@ -528,7 +528,7 @@ function Community() {
 }
 
 function MemeWall() {
-  const items = [bbGreen, bbPurple, bbOrange, bbBlue, bbWhite, bbGreen, bbPurple, bbOrange];
+  const items = [glitchy, glitchy, glitchy, glitchy, glitchy, glitchy, glitchy, glitchy];
   const bubbles = ["wen moon?", "gm void", "fill it.", "ngmi → wagmi", "blank > everything", "0 thoughts.", "𝒱 𝒪 𝐼 𝒟"];
   return (
     <Section id="memewall">
@@ -565,7 +565,7 @@ function Footer() {
     <footer className="relative border-t border-white/10 py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
         <div className="flex items-center gap-3">
-          <img src={bbBlue} alt="GLITCHY" className="h-10 w-10 rounded-full object-cover" />
+          <img src={glitchy} alt="GLITCHY" className="h-10 w-10 rounded-full object-cover" />
           <div>
             <p className="font-display text-sm tracking-widest text-white">GLITCHY</p>
             <p className="text-[10px] uppercase tracking-[0.3em] text-white/40">Built on Monad</p>
