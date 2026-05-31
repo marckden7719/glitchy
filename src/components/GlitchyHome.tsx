@@ -67,7 +67,7 @@ function Loader({ done }: { done: boolean }) {
       animate={{ opacity: done ? 0 : 1 }}
       transition={{ duration: 0.7 }}
       style={{ pointerEvents: done ? "none" : "auto" }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void overflow-hidden"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void"
     >
       <motion.video
         src={loadingVideo}
@@ -75,10 +75,13 @@ function Loader({ done }: { done: boolean }) {
         muted
         loop
         playsInline
-        className="w-full h-full object-cover"
+        className="h-40 w-40 object-contain"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
       />
+      <p className="mt-6 font-display text-sm tracking-[0.4em] text-neon-green text-glow-green">
+        EMERGING FROM THE VOID…
+      </p>
     </motion.div>
   );
 }
