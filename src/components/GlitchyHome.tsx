@@ -5,15 +5,16 @@ import banner from "@/assets/banner.jpeg";
 import bbGreen from "@/assets/bb-green.png";
 import bbPurple from "@/assets/bb-purple.png";
 import bbOrange from "@/assets/bb-orange.png";
+import bbBlue from "@/assets/bb-blue.png";
 import bbWhite from "@/assets/bb-white.png";
 import glitchy from "@/assets/glitchy.png";
 
 const characters = [
-  { src: glitchy, name: "VOID MODE", color: "#C6FF00", glow: "glow-green" },
-  { src: glitchy, name: "GENESIS", color: "#8B3DFF", glow: "glow-purple" },
-  { src: glitchy, name: "MONAD SHIFT", color: "#00A3FF", glow: "glow-blue" },
-  { src: glitchy, name: "HYPE CORE", color: "#FF9D00", glow: "glow-orange" },
-  { src: glitchy, name: "NULL FORM", color: "#FFFFFF", glow: "" },
+  { src: bbGreen, name: "VOID MODE", color: "#C6FF00", glow: "glow-green" },
+  { src: bbPurple, name: "GENESIS", color: "#8B3DFF", glow: "glow-purple" },
+  { src: bbBlue, name: "SOL SHIFT", color: "#00A3FF", glow: "glow-blue" },
+  { src: bbOrange, name: "HYPE CORE", color: "#FF9D00", glow: "glow-orange" },
+  { src: bbWhite, name: "NULL FORM", color: "#FFFFFF", glow: "" },
 ];
 
 function Pixels({ count = 30, color = "#C6FF00" }: { count?: number; color?: string }) {
@@ -217,14 +218,14 @@ function Hero() {
 
       {/* floating mascot */}
       <motion.img
-        src={glitchy}
+        src={bbBlue}
         alt=""
         aria-hidden
         className="pointer-events-none absolute -left-12 bottom-10 hidden h-48 animate-float md:block"
         style={{ filter: "drop-shadow(0 0 30px rgba(0,163,255,0.5))" }}
       />
       <motion.img
-        src={glitchy}
+        src={bbPurple}
         alt=""
         aria-hidden
         className="pointer-events-none absolute -right-12 bottom-20 hidden h-48 animate-float md:block"
@@ -264,8 +265,8 @@ function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            src={glitchy}
-            alt="GLITCHY"
+            src={bbWhite}
+            alt="GLITCHY white hoodie"
             className="mx-auto h-[460px] animate-float object-contain"
             style={{ filter: "drop-shadow(0 0 40px rgba(255,255,255,0.3))" }}
           />
@@ -515,7 +516,7 @@ function Community() {
           </div>
           <div className="relative">
             <img
-              src={glitchy}
+              src={bbGreen}
               alt=""
               className="mx-auto h-80 animate-float object-contain"
               style={{ filter: "drop-shadow(0 0 40px rgba(198,255,0,0.5))" }}
@@ -528,7 +529,7 @@ function Community() {
 }
 
 function MemeWall() {
-  const items = [glitchy, glitchy, glitchy, glitchy, glitchy, glitchy, glitchy, glitchy];
+  const items = [bbGreen, bbPurple, bbOrange, bbBlue, bbWhite, bbGreen, bbPurple, bbOrange];
   const bubbles = ["wen moon?", "gm void", "fill it.", "ngmi → wagmi", "blank > everything", "0 thoughts.", "𝒱 𝒪 𝐼 𝒟"];
   return (
     <Section id="memewall">
