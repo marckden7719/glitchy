@@ -8,6 +8,7 @@ import bbOrange from "@/assets/bb-orange.png";
 import bbBlue from "@/assets/bb-blue.png";
 import bbWhite from "@/assets/bb-white.png";
 import glitchy from "@/assets/glitchy.png";
+import loadingVideo from "@/assets/loading screen.mp4";
 
 const characters = [
   { src: bbGreen, name: "VOID MODE", color: "#C6FF00", glow: "glow-green" },
@@ -66,18 +67,18 @@ function Loader({ done }: { done: boolean }) {
       animate={{ opacity: done ? 0 : 1 }}
       transition={{ duration: 0.7 }}
       style={{ pointerEvents: done ? "none" : "auto" }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void overflow-hidden"
     >
-      <motion.img
-        src={glitchy}
-        alt="GLITCHY"
-        className="h-40 w-40 object-contain animate-flicker"
+      <motion.video
+        src={loadingVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="w-full h-full object-cover"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
       />
-      <p className="mt-6 font-display text-sm tracking-[0.4em] text-neon-green text-glow-green">
-        EMERGING FROM THE VOID…
-      </p>
     </motion.div>
   );
 }
