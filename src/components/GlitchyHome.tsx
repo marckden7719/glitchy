@@ -200,7 +200,7 @@ function Hero() {
             BUY $GLITCHY
           </a>
           <a
-            href="https://t.me/BlankBoyOnSol"
+            href="https://t.me/glitchy_monad"
             target="_blank"
             rel="noreferrer"
             className="rounded-full glass px-8 py-4 font-display text-sm tracking-widest text-white transition hover:scale-105 hover:text-neon-green"
@@ -479,8 +479,8 @@ function Roadmap() {
 
 function Community() {
   const socials = [
-    { label: "X / TWITTER", href: "https://x.com/Blankboyonsol", c: "#FFFFFF" },
-    { label: "TELEGRAM", href: "https://t.me/BlankBoyOnSol", c: "#00A3FF" },
+    { label: "X / TWITTER", href: "https://x.com/theglitchymonad", c: "#FFFFFF" },
+    { label: "TELEGRAM", href: "https://t.me/glitchy_monad", c: "#00A3FF" },
     { label: "DEXSCREENER", href: "#", c: "#C6FF00" },
     { label: "nad.fun", href: "#", c: "#8B3DFF" },
   ];
@@ -577,8 +577,8 @@ function Footer() {
           </div>
         </div>
         <div className="flex gap-5 text-xs uppercase tracking-[0.25em] text-white/60">
-          <a href="https://x.com/Blankboyonsol" target="_blank" rel="noreferrer" className="hover:text-neon-green">Twitter</a>
-          <a href="https://t.me/BlankBoyOnSol" target="_blank" rel="noreferrer" className="hover:text-neon-green">Telegram</a>
+          <a href="https://x.com/theglitchymonad" target="_blank" rel="noreferrer" className="hover:text-neon-green">Twitter</a>
+          <a href="https://t.me/glitchy_monad" target="_blank" rel="noreferrer" className="hover:text-neon-green">Telegram</a>
         </div>
         <p className="text-[10px] uppercase tracking-[0.3em] text-white/30">
           © {new Date().getFullYear()} GLITCHY · The Void
