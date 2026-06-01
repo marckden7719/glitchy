@@ -9,6 +9,7 @@ import bbBlue from "@/assets/bb-blue.png";
 import bbWhite from "@/assets/bb-white.png";
 import glitchy from "@/assets/glitchy.png";
 import loadingVideo from "@/assets/loading.mp4";
+import tokenomicImage from "@/assets/tokenomic.jpg";
 
 const characters = [
   { src: bbGreen, name: "VOID MODE", color: "#C6FF00", glow: "glow-green" },
@@ -351,22 +352,16 @@ function Gallery() {
 }
 
 function Tokenomics() {
-  const stats = [
-    { k: "Total Supply", v: "1,000,000,000", c: "#C6FF00" },
-    { k: "Tax", v: "0 / 0", c: "#00A3FF" },
-    { k: "Liquidity", v: "BURNED", c: "#FF9D00" },
-    { k: "Contract", v: "RENOUNCED", c: "#8B3DFF" },
-    { k: "Network", v: "MONAD", c: "#00A3FF" },
-    { k: "Ticker", v: "$GLITCHY", c: "#C6FF00" },
+  const tokenAllocation = [
+    { label: "Community", percentage: "87%", color: "#C6FF00" },
+    { label: "Dev", percentage: "13%", color: "#8B3DFF" },
+    { label: "Ekosistem", percentage: "4%", color: "#00A3FF" },
+    { label: "Partnership", percentage: "2%", color: "#FF9D00" },
+    { label: "Marketing", percentage: "2%", color: "#FFFFFF" },
+    { label: "Cex in Future", percentage: "3%", color: "#C6FF00" },
+    { label: "Airdrop", percentage: "1%", color: "#00A3FF" },
+    { label: "Team", percentage: "1%", color: "#8B3DFF" },
   ];
-  
-  const [isClient, setIsClient] = useState(false);
-  const [widths, setWidths] = useState<number[]>([]);
-
-  useEffect(() => {
-    setIsClient(true);
-    setWidths(stats.map(() => 60 + Math.random() * 35));
-  }, []);
 
   return (
     <Section id="tokenomics">
@@ -374,43 +369,54 @@ function Tokenomics() {
       <div className="mb-14 text-center">
         <p className="font-display text-xs tracking-[0.5em] text-neon-blue">// 03 · NUMBERS</p>
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">TOKENOMICS</h2>
+        <p className="mt-4 text-white/70">Fair launch 100%</p>
       </div>
-      <div className="grid gap-5 md:grid-cols-3">
-        {stats.map((s, i) => (
-          <motion.div
-            key={s.k}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.06 }}
-            className="relative overflow-hidden rounded-2xl glass p-6"
-            style={{ boxShadow: `inset 0 0 0 1px ${s.c}33` }}
-          >
-            <div
-              className="absolute -top-12 -right-12 h-32 w-32 rounded-full opacity-30"
-              style={{ background: s.c, filter: "blur(40px)" }}
-            />
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">{s.k}</p>
-            <p
-              className="font-display mt-3 text-3xl"
-              style={{ color: s.c, textShadow: `0 0 18px ${s.c}88` }}
+      <div className="grid gap-8 md:grid-cols-2 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <img
+            src={tokenomicImage}
+            alt="Tokenomics"
+            className="w-full rounded-2xl glass p-2"
+          />
+        </motion.div>
+        <div className="space-y-4">
+          {tokenAllocation.map((item, i) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="relative overflow-hidden rounded-xl glass p-4"
+              style={{ boxShadow: `inset 0 0 0 1px ${item.color}33` }}
             >
-              {s.v}
-            </p>
-            <div className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-white/5">
-              {isClient && widths[i] !== undefined && (
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm font-medium text-white">{item.label}</span>
+                <span
+                  className="font-display text-xl"
+                  style={{ color: item.color, textShadow: `0 0 10px ${item.color}88` }}
+                >
+                  {item.percentage}
+                </span>
+              </div>
+              <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
-                  whileInView={{ width: `${widths[i]}%` }}
+                  whileInView={{ width: item.percentage }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1.2, delay: i * 0.06 }}
-                  className="h-full"
-                  style={{ background: s.c, boxShadow: `0 0 12px ${s.c}` }}
+                  transition={{ duration: 1, delay: i * 0.08 }}
+                  className="h-full rounded-full"
+                  style={{ background: item.color, boxShadow: `0 0 10px ${item.color}` }}
                 />
-              )}
-            </div>
-          </motion.div>
-        ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </Section>
   );
