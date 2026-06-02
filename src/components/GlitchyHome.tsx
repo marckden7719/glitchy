@@ -125,9 +125,7 @@ function Nav() {
           <a href="#community" className="hover:text-neon-green">Community</a>
         </nav>
         <a
-          href="https://gmgn.ai/monad/token/nadfun_0x408Bbf1De1Aa489a84F79505bE0422FB0b697777"
-          target="_blank"
-          rel="noreferrer"
+          href="#community"
           className="rounded-full bg-[var(--neon-green)] px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-black hover:opacity-90"
         >
           Buy $GLITCHY
@@ -197,9 +195,7 @@ function Hero() {
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <a
-            href="https://gmgn.ai/monad/token/nadfun_0x408Bbf1De1Aa489a84F79505bE0422FB0b697777"
-            target="_blank"
-            rel="noreferrer"
+            href="#community"
             className="group relative overflow-hidden rounded-full bg-[var(--neon-green)] px-8 py-4 font-display text-sm tracking-widest text-black glow-green transition hover:scale-105"
           >
             BUY $GLITCHY
@@ -367,11 +363,6 @@ function Tokenomics() {
     { label: "Team", percentage: "1%", color: "#8B3DFF" },
   ];
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    alert("Contract address copied!");
-  };
-
   return (
     <Section id="tokenomics">
       <div className="absolute inset-0 -z-10 grid-bg opacity-30" />
@@ -380,57 +371,6 @@ function Tokenomics() {
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">TOKENOMICS</h2>
         <p className="mt-4 text-white/70">Fair launch 100%</p>
       </div>
-
-      {/* Token Information */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mb-12 rounded-2xl glass p-6"
-      >
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <div className="text-center">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 mb-2">Name</p>
-            <p className="font-display text-2xl text-white text-glow-white">GLITCHY</p>
-          </div>
-          <div className="text-center">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 mb-2">Symbol</p>
-            <p className="font-display text-2xl text-neon-green text-glow-green">$GLITCHY</p>
-          </div>
-          <div className="text-center">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50 mb-2">Contract Address</p>
-            <div className="flex items-center justify-center gap-2">
-              <code className="font-mono text-sm text-white/80 bg-black/30 px-3 py-2 rounded-lg">
-                0x408Bbf1De1Aa489a84F79505bE0422FB0b697777
-              </code>
-              <button
-                onClick={() => copyToClipboard("0x408Bbf1De1Aa489a84F79505bE0422FB0b697777")}
-                className="text-neon-green hover:text-neon-green/80 transition-colors"
-              >
-                📋
-              </button>
-            </div>
-          </div>
-          <div className="flex gap-3 justify-center items-center">
-            <a
-              href="https://gmgn.ai/monad/token/nadfun_0x408Bbf1De1Aa489a84F79505bE0422FB0b697777"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full bg-neon-green px-6 py-3 font-display text-sm tracking-widest text-black hover:opacity-90 transition-opacity"
-            >
-              BUY
-            </a>
-            <a
-              href="https://www.dextools.io/app/monad/pair-explorer/0x4bc3a0975ab499899e650a72c6c01c7f3d4bfb84"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full glass px-6 py-3 font-display text-sm tracking-widest text-white hover:scale-105 transition-transform"
-            >
-              CHART
-            </a>
-          </div>
-        </div>
-      </motion.div>
 
       <div className="grid gap-8 md:grid-cols-2 items-center">
         <motion.div
@@ -548,8 +488,8 @@ function Community() {
   const socials = [
     { label: "X / TWITTER", href: "https://x.com/theglitchymonad", c: "#FFFFFF" },
     { label: "TELEGRAM", href: "https://t.me/glitchy_monad", c: "#00A3FF" },
-    { label: "CHART", href: "https://www.dextools.io/app/monad/pair-explorer/0x4bc3a0975ab499899e650a72c6c01c7f3d4bfb84", c: "#C6FF00" },
-    { label: "BUY", href: "https://gmgn.ai/monad/token/nadfun_0x408Bbf1De1Aa489a84F79505bE0422FB0b697777", c: "#8B3DFF" },
+    { label: "DEXSCREENER", href: "#", c: "#C6FF00" },
+    { label: "nad.fun", href: "#", c: "#8B3DFF" },
   ];
   return (
     <Section id="community">
