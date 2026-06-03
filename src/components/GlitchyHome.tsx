@@ -326,6 +326,18 @@ function About() {
 }
 
 function TokenInfo() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText("0xb8269536296648bE290b173B9a15f56bbF5B7777");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
   return (
     <Section id="token-info">
       <div className="mb-16 text-center">
@@ -333,28 +345,46 @@ function TokenInfo() {
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">TOKEN DETAILS</h2>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0 * 0.1 }}
+          className="rounded-3xl glass p-6 text-center cursor-pointer transition-all hover:scale-[1.02] hover:shadow-xl"
+          style={{ boxShadow: `inset 0 0 0 1px #C6FF0055` }}
+          onClick={handleCopy}
+        >
+          <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">Contract Address</p>
+          <div className="mt-2 flex items-center justify-center gap-2">
+            <p
+              className="font-display text-sm sm:text-lg break-all"
+              style={{ color: "#C6FF00", textShadow: `0 0 14px #C6FF0088` }}
+            >
+              0xb8269536296648bE290b173B9a15f56bbF5B7777
+            </p>
+          </div>
+          <p className="mt-2 text-xs text-neon-green font-display">
+            {copied ? "✓ Copied!" : "Click to Copy"}
+          </p>
+        </motion.div>
+
         {[
-          {
-            label: "Contract Address",
-            value: "0xb8269536296648bE290b173B9a15f56bbF5B7777",
-            color: "#C6FF00",
-          },
-          { label: "Token Name", value: "GLITCHY", color: "#8B3DFF" },
-          { label: "Symbol", value: "GLITCHY", color: "#00A3FF" },
-          { label: "Chain", value: "Monad", color: "#FF9D00" },
-        ].map((item, i) => (
+          { label: "Token Name", value: "GLITCHY", color: "#8B3DFF", delay: 1 },
+          { label: "Symbol", value: "GLITCHY", color: "#00A3FF", delay: 2 },
+          { label: "Chain", value: "Monad", color: "#FF9D00", delay: 3 },
+        ].map((item) => (
           <motion.div
-            key={i}
+            key={item.label}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="rounded-2xl glass p-6 text-center"
+            transition={{ delay: item.delay * 0.1 }}
+            className="rounded-3xl glass p-6 text-center transition-all hover:scale-[1.02] hover:shadow-xl"
             style={{ boxShadow: `inset 0 0 0 1px ${item.color}55` }}
           >
             <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">{item.label}</p>
             <p
-              className="mt-2 font-display text-lg"
+              className="mt-2 font-display text-lg sm:text-2xl"
               style={{ color: item.color, textShadow: `0 0 14px ${item.color}88` }}
             >
               {item.value}
