@@ -24,9 +24,24 @@ const PERSONAS: {
 ];
 
 const MODES: { key: Mode; label: string; placeholder: string; example: string }[] = [
-  { key: "meme", label: "MEME GEN", placeholder: "monad meme about fomo…", example: "degens watching the chart at 4am" },
-  { key: "reply", label: "CT REPLY", placeholder: "paste a tweet or topic…", example: "someone shilling a new L2" },
-  { key: "token", label: "TOKEN GEN", placeholder: "narrative or vibe…", example: "abandoned wallet dust cult" },
+  {
+    key: "meme",
+    label: "MEME GEN",
+    placeholder: "monad meme about fomo…",
+    example: "degens watching the chart at 4am",
+  },
+  {
+    key: "reply",
+    label: "CT REPLY",
+    placeholder: "paste a tweet or topic…",
+    example: "someone shilling a new L2",
+  },
+  {
+    key: "token",
+    label: "TOKEN GEN",
+    placeholder: "narrative or vibe…",
+    example: "abandoned wallet dust cult",
+  },
   { key: "lore", label: "LORE", placeholder: "lore subject…", example: "the origin of glitchy" },
   { key: "shitpost", label: "SHITPOST", placeholder: "topic…", example: "utility tokens" },
 ];
@@ -182,14 +197,10 @@ export default function GlitchyAITerminal() {
                       setError(null);
                     }}
                     className={`rounded-md px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest transition ${
-                      active
-                        ? "bg-white/10 text-white"
-                        : "text-white/50 hover:text-white"
+                      active ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
                     }`}
                     style={
-                      active
-                        ? { boxShadow: `inset 0 -2px 0 0 ${activePersona.color}` }
-                        : undefined
+                      active ? { boxShadow: `inset 0 -2px 0 0 ${activePersona.color}` } : undefined
                     }
                   >
                     {m.label}
@@ -213,7 +224,9 @@ export default function GlitchyAITerminal() {
                     className="text-white/40"
                   >
                     <div className="mb-2 text-white/60">
-                      &gt; glitchy_ai initialized. persona: <span style={{ color: activePersona.color }}>{activePersona.label}</span>. mode: {activeMode.label}.
+                      &gt; glitchy_ai initialized. persona:{" "}
+                      <span style={{ color: activePersona.color }}>{activePersona.label}</span>.
+                      mode: {activeMode.label}.
                     </div>
                     <div className="mb-1">&gt; awaiting input from the void_</div>
                     <button
@@ -265,10 +278,7 @@ export default function GlitchyAITerminal() {
             {/* Input bar */}
             <div className="border-t border-white/10 bg-black/40 p-3">
               <div className="flex items-center gap-2">
-                <span
-                  className="font-mono text-xs"
-                  style={{ color: activePersona.color }}
-                >
+                <span className="font-mono text-xs" style={{ color: activePersona.color }}>
                   &gt;
                 </span>
                 <input
@@ -307,9 +317,7 @@ export default function GlitchyAITerminal() {
                 <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/30">
                   {activeMode.label} // {activePersona.label} // press enter to summon
                 </div>
-                <div className="font-mono text-[10px] text-white/30">
-                  {input.length}/500
-                </div>
+                <div className="font-mono text-[10px] text-white/30">{input.length}/500</div>
               </div>
             </div>
           </div>
@@ -343,7 +351,9 @@ export default function GlitchyAITerminal() {
 
 function Pixels({ color }: { color: string }) {
   const [isClient, setIsClient] = useState(false);
-  const [pixels, setPixels] = useState<Array<{ size: number; left: number; top: number; delay: number; dur: number }>>([]);
+  const [pixels, setPixels] = useState<
+    Array<{ size: number; left: number; top: number; delay: number; dur: number }>
+  >([]);
 
   useEffect(() => {
     setIsClient(true);

@@ -73,10 +73,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "GLITCHY — Fill The Void | $GLITCHY on Monad" },
-      { name: "description", content: "Glitchy emerges from the digital void. The enigmatic Monad memecoin for creators, degens, and dreamers." },
+      {
+        name: "description",
+        content:
+          "Glitchy emerges from the digital void. The enigmatic Monad memecoin for creators, degens, and dreamers.",
+      },
       { name: "author", content: "Glitchy" },
       { property: "og:title", content: "GLITCHY — Fill The Void" },
-      { property: "og:description", content: "The mysterious icon from the digital void. $GLITCHY on Monad." },
+      {
+        property: "og:description",
+        content: "The mysterious icon from the digital void. $GLITCHY on Monad.",
+      },
       { property: "og:image", content: "/og.jpeg" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -90,7 +97,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.jpeg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Space+Grotesk:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,

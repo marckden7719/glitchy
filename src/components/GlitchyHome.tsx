@@ -21,7 +21,9 @@ const characters = [
 
 function Pixels({ count = 30, color = "#C6FF00" }: { count?: number; color?: string }) {
   const [isClient, setIsClient] = useState(false);
-  const [pixels, setPixels] = useState<Array<{ size: number; left: number; top: number; delay: number; dur: number }>>([]);
+  const [pixels, setPixels] = useState<
+    Array<{ size: number; left: number; top: number; delay: number; dur: number }>
+  >([]);
 
   useEffect(() => {
     setIsClient(true);
@@ -117,15 +119,32 @@ function Nav() {
           <span className="font-display text-sm tracking-widest text-white">GLITCHY</span>
         </a>
         <nav className="hidden gap-7 text-xs uppercase tracking-[0.2em] text-white/70 md:flex">
-          <a href="#about" className="hover:text-neon-green">About</a>
-          <a href="#glitchy-ai" className="hover:text-neon-green">GLITCHY AI</a>
-          <a href="#gallery" className="hover:text-neon-green">Gallery</a>
-          <a href="#tokenomics" className="hover:text-neon-green">Tokenomics</a>
-          <a href="#roadmap" className="hover:text-neon-green">Roadmap</a>
-          <a href="#community" className="hover:text-neon-green">Community</a>
+          <a href="#about" className="hover:text-neon-green">
+            About
+          </a>
+          <a href="#token-info" className="hover:text-neon-green">
+            Token Info
+          </a>
+          <a href="#glitchy-ai" className="hover:text-neon-green">
+            GLITCHY AI
+          </a>
+          <a href="#gallery" className="hover:text-neon-green">
+            Gallery
+          </a>
+          <a href="#tokenomics" className="hover:text-neon-green">
+            Tokenomics
+          </a>
+          <a href="#roadmap" className="hover:text-neon-green">
+            Roadmap
+          </a>
+          <a href="#community" className="hover:text-neon-green">
+            Community
+          </a>
         </nav>
         <a
-          href="#community"
+          href="https://nad.fun/tokens/0xb8269536296648bE290b173B9a15f56bbF5B7777"
+          target="_blank"
+          rel="noreferrer"
           className="rounded-full bg-[var(--neon-green)] px-4 py-2 text-[11px] font-bold uppercase tracking-widest text-black hover:opacity-90"
         >
           Buy $GLITCHY
@@ -157,7 +176,10 @@ function Hero() {
         />
       </div>
 
-      <motion.div style={{ y }} className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-6 pt-10 text-center">
+      <motion.div
+        style={{ y }}
+        className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-6 pt-10 text-center"
+      >
         <motion.img
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -184,8 +206,8 @@ function Hero() {
           transition={{ delay: 0.9, duration: 0.8 }}
           className="mt-6 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base"
         >
-          GLITCHY, the enigmatic icon, emerges from the digital void —
-          inviting creators, degens, and dreamers to write their own story.
+          GLITCHY, the enigmatic icon, emerges from the digital void — inviting creators, degens,
+          and dreamers to write their own story.
         </motion.p>
 
         <motion.div
@@ -195,7 +217,9 @@ function Hero() {
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <a
-            href="#community"
+            href="https://nad.fun/tokens/0xb8269536296648bE290b173B9a15f56bbF5B7777"
+            target="_blank"
+            rel="noreferrer"
             className="group relative overflow-hidden rounded-full bg-[var(--neon-green)] px-8 py-4 font-display text-sm tracking-widest text-black glow-green transition hover:scale-105"
           >
             BUY $GLITCHY
@@ -301,11 +325,52 @@ function About() {
   );
 }
 
+function TokenInfo() {
+  return (
+    <Section id="token-info">
+      <div className="mb-16 text-center">
+        <p className="font-display text-xs tracking-[0.5em] text-neon-green">// 02 · TOKEN INFO</p>
+        <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">TOKEN DETAILS</h2>
+      </div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {[
+          {
+            label: "Contract Address",
+            value: "0xb8269536296648bE290b173B9a15f56bbF5B7777",
+            color: "#C6FF00",
+          },
+          { label: "Token Name", value: "GLITCHY", color: "#8B3DFF" },
+          { label: "Symbol", value: "GLITCHY", color: "#00A3FF" },
+          { label: "Chain", value: "Monad", color: "#FF9D00" },
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="rounded-2xl glass p-6 text-center"
+            style={{ boxShadow: `inset 0 0 0 1px ${item.color}55` }}
+          >
+            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">{item.label}</p>
+            <p
+              className="mt-2 font-display text-lg"
+              style={{ color: item.color, textShadow: `0 0 14px ${item.color}88` }}
+            >
+              {item.value}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 function Gallery() {
   return (
     <Section id="gallery">
       <div className="mb-16 text-center">
-        <p className="font-display text-xs tracking-[0.5em] text-neon-purple">// 02 · FORMS</p>
+        <p className="font-display text-xs tracking-[0.5em] text-neon-purple">// 03 · FORMS</p>
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">CHARACTER VAULT</h2>
         <p className="mx-auto mt-4 max-w-xl text-white/60">
           Five forms. One void. Choose your GLITCHY.
@@ -334,8 +399,13 @@ function Gallery() {
             </div>
             <div className="mt-4 flex items-center justify-between">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">FORM #00{i + 1}</p>
-                <p className="font-display text-2xl text-white" style={{ textShadow: `0 0 18px ${c.color}99` }}>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">
+                  FORM #00{i + 1}
+                </p>
+                <p
+                  className="font-display text-2xl text-white"
+                  style={{ textShadow: `0 0 18px ${c.color}99` }}
+                >
                   {c.name}
                 </p>
               </div>
@@ -367,7 +437,7 @@ function Tokenomics() {
     <Section id="tokenomics">
       <div className="absolute inset-0 -z-10 grid-bg opacity-30" />
       <div className="mb-14 text-center">
-        <p className="font-display text-xs tracking-[0.5em] text-neon-blue">// 03 · NUMBERS</p>
+        <p className="font-display text-xs tracking-[0.5em] text-neon-blue">// 04 · NUMBERS</p>
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">TOKENOMICS</h2>
         <p className="mt-4 text-white/70">Fair launch 100%</p>
       </div>
@@ -379,11 +449,7 @@ function Tokenomics() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <img
-            src={tokenomicImage}
-            alt="Tokenomics"
-            className="w-full rounded-2xl glass p-2"
-          />
+          <img src={tokenomicImage} alt="Tokenomics" className="w-full rounded-2xl glass p-2" />
         </motion.div>
         <div className="space-y-4">
           {tokenAllocation.map((item, i) => (
@@ -425,15 +491,27 @@ function Tokenomics() {
 
 function Roadmap() {
   const phases = [
-    { p: "PHASE 1", color: "#C6FF00", items: ["Enter The Void", "Community Formation", "Meme Expansion"] },
-    { p: "PHASE 2", color: "#00A3FF", items: ["Viral Marketing", "Monad Trending", "Influencer Push"] },
-    { p: "PHASE 3", color: "#8B3DFF", items: ["Ecosystem Growth", "GLITCHY Universe", "Community Events"] },
+    {
+      p: "PHASE 1",
+      color: "#C6FF00",
+      items: ["Enter The Void", "Community Formation", "Meme Expansion"],
+    },
+    {
+      p: "PHASE 2",
+      color: "#00A3FF",
+      items: ["Viral Marketing", "Monad Trending", "Influencer Push"],
+    },
+    {
+      p: "PHASE 3",
+      color: "#8B3DFF",
+      items: ["Ecosystem Growth", "GLITCHY Universe", "Community Events"],
+    },
     { p: "PHASE 4", color: "#FF9D00", items: ["Become The Meme", "Internet Domination"] },
   ];
   return (
     <Section id="roadmap">
       <div className="mb-14 text-center">
-        <p className="font-display text-xs tracking-[0.5em] text-neon-orange">// 04 · PATH</p>
+        <p className="font-display text-xs tracking-[0.5em] text-neon-orange">// 06 · PATH</p>
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">THE ROADMAP</h2>
       </div>
       <div className="relative">
@@ -488,8 +566,12 @@ function Community() {
   const socials = [
     { label: "X / TWITTER", href: "https://x.com/theglitchymonad", c: "#FFFFFF" },
     { label: "TELEGRAM", href: "https://t.me/glitchy_monad", c: "#00A3FF" },
-    { label: "DEXSCREENER", href: "#", c: "#C6FF00" },
-    { label: "nad.fun", href: "#", c: "#8B3DFF" },
+    { label: "DEXSCREENER", href: "https://dexscreener.com", c: "#C6FF00" },
+    {
+      label: "nad.fun",
+      href: "https://nad.fun/tokens/0xb8269536296648bE290b173B9a15f56bbF5B7777",
+      c: "#8B3DFF",
+    },
   ];
   return (
     <Section id="community">
@@ -499,7 +581,7 @@ function Community() {
         <div className="absolute -left-20 -bottom-20 h-60 w-60 rounded-full bg-[var(--electric-purple)] opacity-20 blur-3xl" />
         <div className="relative grid items-center gap-10 md:grid-cols-2">
           <div>
-            <p className="font-display text-xs tracking-[0.5em] text-neon-green">// 05 · JOIN</p>
+            <p className="font-display text-xs tracking-[0.5em] text-neon-green">// 07 · JOIN</p>
             <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">
               ENTER THE <span className="text-neon-green text-glow-green">VOID.</span>
             </h2>
@@ -541,11 +623,19 @@ function Community() {
 
 function MemeWall() {
   const items = [bbGreen, bbPurple, bbOrange, bbBlue, bbWhite, bbGreen, bbPurple, bbOrange];
-  const bubbles = ["wen moon?", "gm void", "fill it.", "ngmi → wagmi", "blank > everything", "0 thoughts.", "𝒱 𝒪 𝐼 𝒟"];
+  const bubbles = [
+    "wen moon?",
+    "gm void",
+    "fill it.",
+    "ngmi → wagmi",
+    "blank > everything",
+    "0 thoughts.",
+    "𝒱 𝒪 𝐼 𝒟",
+  ];
   return (
     <Section id="memewall">
       <div className="mb-14 text-center">
-        <p className="font-display text-xs tracking-[0.5em] text-neon-purple">// 06 · CULTURE</p>
+        <p className="font-display text-xs tracking-[0.5em] text-neon-purple">// 08 · CULTURE</p>
         <h2 className="font-display mt-3 text-5xl text-white md:text-6xl">THE MEME WALL</h2>
       </div>
       <div className="relative overflow-hidden rounded-3xl glass p-6">
@@ -584,8 +674,22 @@ function Footer() {
           </div>
         </div>
         <div className="flex gap-5 text-xs uppercase tracking-[0.25em] text-white/60">
-          <a href="https://x.com/theglitchymonad" target="_blank" rel="noreferrer" className="hover:text-neon-green">Twitter</a>
-          <a href="https://t.me/glitchy_monad" target="_blank" rel="noreferrer" className="hover:text-neon-green">Telegram</a>
+          <a
+            href="https://x.com/theglitchymonad"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-neon-green"
+          >
+            Twitter
+          </a>
+          <a
+            href="https://t.me/glitchy_monad"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-neon-green"
+          >
+            Telegram
+          </a>
         </div>
         <p className="text-[10px] uppercase tracking-[0.3em] text-white/30">
           © {new Date().getFullYear()} GLITCHY · The Void
@@ -608,6 +712,7 @@ export default function GlitchyHome() {
       <Nav />
       <Hero />
       <About />
+      <TokenInfo />
       <GlitchyAITerminal />
       <Gallery />
       <Tokenomics />

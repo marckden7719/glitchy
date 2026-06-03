@@ -23,7 +23,7 @@ export const getModelWithFallback = (
   options: {
     primaryModel?: string;
     fallbackModel?: string;
-  } = {}
+  } = {},
 ) => {
   const primaryModel = options.primaryModel || MODELS.PRIMARY;
   const fallbackModel = options.fallbackModel || MODELS.FALLBACK;
@@ -31,7 +31,10 @@ export const getModelWithFallback = (
   try {
     return provider(primaryModel);
   } catch (error) {
-    console.warn(`Failed to load primary model (${primaryModel}), falling back to ${fallbackModel}`, error);
+    console.warn(
+      `Failed to load primary model (${primaryModel}), falling back to ${fallbackModel}`,
+      error,
+    );
     return provider(fallbackModel);
   }
 };
